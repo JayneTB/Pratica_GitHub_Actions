@@ -3,7 +3,9 @@ package br.edu.unijui.vv;
 import java.time.LocalDateTime;
 
 public final class Reserva {
-    public enum Status { ATIVA, CANCELADA }
+    public enum Status {
+        ATIVA, CANCELADA
+    }
 
     private final String sala;
     private final LocalDateTime inicio;
@@ -11,7 +13,7 @@ public final class Reserva {
     private Status status = Status.ATIVA;
 
     public Reserva(String sala, LocalDateTime inicio, int minutos) {
-        if (minutos < 30 || minutos > 120) {
+        if (minutos < 30 || minutos >= 120) {
             throw new IllegalArgumentException("Duracao fora dos limites");
         }
         this.sala = sala;
@@ -26,8 +28,19 @@ public final class Reserva {
         status = Status.CANCELADA;
     }
 
-    public String getSala() { return sala; }
-    public LocalDateTime getInicio() { return inicio; }
-    public int getMinutos() { return minutos; }
-    public Status getStatus() { return status; }
+    public String getSala() {
+        return sala;
+    }
+
+    public LocalDateTime getInicio() {
+        return inicio;
+    }
+
+    public int getMinutos() {
+        return minutos;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
 }
